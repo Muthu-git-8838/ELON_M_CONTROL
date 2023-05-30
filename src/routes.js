@@ -14,6 +14,14 @@ const CorporateActions = React.lazy(() =>
   import('./views/profile/configuartion/Corporate Actions/CorporateAction'),
 )
 const Portfolio = React.lazy(() => import('./views/profile/portfolio/Portfolio'))
+const StockPort = React.lazy(() => import('./views/profile/portfolio/StockPort'))
+const MFPort = React.lazy(() => import('./views/profile/portfolio/MFPort'))
+const BondPort = React.lazy(() => import('./views/profile/portfolio/BondPort'))
+const GoldPort = React.lazy(() => import('./views/profile/portfolio/GoldPort'))
+const GoldSGBPort = React.lazy(() => import('./views/profile/portfolio/GoldSGBPort'))
+const CFPort = React.lazy(() => import('./views/profile/portfolio/CFPort'))
+const POPort = React.lazy(() => import('./views/profile/portfolio/POPort'))
+const LandingPort = React.lazy(() => import('./views/profile/portfolio/LandingPort'))
 const Typography = React.lazy(() => import('./views/profile/typography/Typography'))
 const Form = React.lazy(() => import('./views/profile/form/Form'))
 const SmallFdRates = React.lazy(() => import('./views/profile/fdrates/smallbank/SmallFdRates'))
@@ -61,6 +69,47 @@ const routes = [
     name: 'Portfolio Manage',
     element: Portfolio,
   },
+  {
+    path: '/profile/portfolio/stocks',
+    name: 'Stocks Portfolio Manage',
+    element: StockPort,
+  },
+  {
+    path: '/profile/portfolio/mf',
+    name: 'Mutual Funds Portfolio Manage',
+    element: MFPort,
+  },
+  {
+    path: '/profile/portfolio/bond',
+    name: 'Bonding Portfolio Manage',
+    element: BondPort,
+  },
+  {
+    path: '/profile/portfolio/gold',
+    name: 'Gold Portfolio Manage',
+    element: GoldPort,
+  },
+  {
+    path: '/profile/portfolio/gold-sgb',
+    name: 'Gold SGB Portfolio Manage',
+    element: GoldSGBPort,
+  },
+  {
+    path: '/profile/portfolio/cf',
+    name: 'Chit Fund Portfolio Manage',
+    element: CFPort,
+  },
+  {
+    path: '/profile/portfolio/po',
+    name: 'Post Office Portfolio Manage',
+    element: POPort,
+  },
+  {
+    path: '/profile/portfolio/landing',
+    name: 'Landing Portfolio Management',
+    element: LandingPort,
+  },
+
   { path: '/profile/analysis', name: 'Typography', element: Typography },
   { path: '/profile/form', name: 'Form', element: Form },
   { path: '/fdrates', name: 'FD Rates', element: ForeignFdRates, exact: true },

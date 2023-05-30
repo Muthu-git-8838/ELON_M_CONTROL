@@ -22,10 +22,6 @@ const _nav = [
     name: 'Dashboard',
     to: '/dashboard',
     icon: <CIcon icon={cilApps} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
   },
   {
     component: CNavTitle,
@@ -98,24 +94,105 @@ const _nav = [
     ],
   },
   {
-    component: CNavItem,
+    component: CNavGroup,
     name: 'Portfolio  Manage',
     icon: <CIcon icon={cilAppsSettings} customClassName="nav-icon" />,
+
     to: '/profile/portfolio',
+
+    items: [
+      {
+        component: CNavItem,
+        name: 'Overall PortFolio',
+        to: '/profile/portfolio',
+      },
+      {
+        component: CNavItem,
+        name: 'Stocks',
+        to: '/profile/portfolio/stocks',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        component: CNavItem,
+        name: 'Mutual Funds',
+        to: '/profile/portfolio/mf',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        component: CNavItem,
+        name: 'Bond',
+        to: '/profile/portfolio/bond',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        component: CNavItem,
+        name: 'Gold',
+        to: '/profile/portfolio/gold',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        component: CNavItem,
+        name: 'Gold SGB',
+        to: '/profile/portfolio/gold-sgb',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        component: CNavItem,
+        name: 'Chit Fund',
+        to: '/profile/portfolio/cf',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        component: CNavItem,
+        name: 'Post office',
+        to: '/profile/portfolio/po',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        component: CNavItem,
+        name: 'Landing',
+        to: '/profile/portfolio/landing',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+    ],
   },
 
-  {
-    component: CNavItem,
-    name: 'Analysis',
-    to: '/profile/analysis',
-    icon: <CIcon icon={cilBug} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Form Sheet',
-    to: '/profile/form',
-    icon: <CIcon icon={cilViewModule} customClassName="nav-icon" />,
-  },
+  // {
+  //   component: CNavItem,
+  //   name: 'Analysis',
+  //   to: '/profile/analysis',
+  //   icon: <CIcon icon={cilBug} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Form Sheet',
+  //   to: '/profile/form',
+  //   icon: <CIcon icon={cilViewModule} customClassName="nav-icon" />,
+  // },
 
   // {
   //   component: CNavTitle,

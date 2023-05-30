@@ -15,6 +15,9 @@ import { useNavigate } from 'react-router-dom'
 
 // } from '@coreui/react'
 
+import { cibGoogle, cibFacebook, cibTwitter, cibLinkedin } from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
+
 import {
   UrbanCoopFdRates,
   ForeignFdRates,
@@ -83,9 +86,9 @@ const Login = () => {
           email,
           password,
         })
-
         const r = response.data
         // console.log(r)
+        sessionStorage.setItem('user', r.data.email)
 
         if (r.message === 'Signin Successfully') {
           toast.success('Login Successfully', {
@@ -94,7 +97,7 @@ const Login = () => {
             theme: 'dark',
           })
           const randomId = Math.random().toString(36).substring(2)
-          localStorage.setItem('AuthID', randomId)
+          sessionStorage.setItem('AuthID', randomId)
           navigate('/')
           setLoading(false)
         }
@@ -108,15 +111,23 @@ const Login = () => {
 
   const validate = () => {
     let result = true
-
+    let err_msg = 'Please Enter Your '
     if (email === '' || email === null) {
       result = false
-      alert('Please Enter Your Username')
+      err_msg += 'E-mail '
     }
     if (password === '' || password === null) {
       result = false
-      alert('Please Enter Your Password')
+      err_msg += 'Password'
     }
+    if (!result) {
+      toast.warning(err_msg, {
+        position: 'top-center',
+        theme: 'dark',
+      })
+      setLoading(false)
+    }
+
     return result
   }
 
@@ -300,9 +311,6 @@ const Login = () => {
       </nav>
       <div className="login bg-light min-vh-100 d-flex flex-row align-items-center justify-content-center">
         {loading ? (
-          // <div className="spinner-border" role="status">
-          //   <span className="visually-hidden">Loading...</span>
-          // </div>
           <Loader />
         ) : (
           <form>
@@ -342,6 +350,47 @@ const Login = () => {
               >
                 {loading ? 'PLEASE WAIT' : 'LOGIN'}
               </button>
+            </div>
+            <div className="social-media">
+              <p className="text-center"> Or Login With</p>
+              <ul>
+                <li>
+                  <a target="_blank" href="https://www.google.com/">
+                    <CIcon
+                      icon={cibGoogle}
+                      className="me-2"
+                      style={{ color: '#cc0000', cursor: 'pointer' }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://www.facebook.com/">
+                    <CIcon
+                      icon={cibFacebook}
+                      className="me-2"
+                      style={{ color: '#0066ff', cursor: 'pointer' }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://in.linkedin.com/">
+                    <CIcon
+                      icon={cibLinkedin}
+                      className="me-2"
+                      style={{ color: '#0066ff', cursor: 'pointer', fontSize: '50px' }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://twitter.com/">
+                    <CIcon
+                      icon={cibTwitter}
+                      className="me-2"
+                      style={{ color: '#1aa3ff', cursor: 'pointer' }}
+                    />
+                  </a>
+                </li>
+              </ul>
             </div>
             <div className="form-floating mt-3">
               <span>

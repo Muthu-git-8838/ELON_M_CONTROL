@@ -22,6 +22,7 @@ import {
   NbfcFdRates,
 } from 'src/views/profile/fdrates'
 import { toast } from 'react-toastify'
+import Loader from 'src/views/profile/portfolio/Loader'
 
 const Register = () => {
   const [firstName, setFirstName] = useState('')
@@ -29,6 +30,9 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
+  const [cpassword, setCpassword] = useState('')
+  const [terms, setTerms] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [visibleLg, setVisibleLg] = useState(false)
   const [visibleLg1, setVisibleLg1] = useState(false)
   const [visibleLg2, setVisibleLg2] = useState(false)
@@ -40,7 +44,7 @@ const Register = () => {
 
   const isValidate = () => {
     let isProceed = true
-    let err_msg = 'Please Enter a Value of '
+    let err_msg = 'Please Enter a Valid  '
     if (firstName === '' || firstName === null) {
       isProceed = false
       err_msg += ' first name '
@@ -49,9 +53,9 @@ const Register = () => {
       isProceed = false
       err_msg += ' last name '
     }
-    if (mobile === '' || mobile === null) {
+    if (mobile === '' || mobile === null || mobile.length < 10) {
       isProceed = false
-      err_msg += 'mobile '
+      err_msg += 'mobile number'
     }
     if (email === '' || email === null) {
       isProceed = false
@@ -61,14 +65,31 @@ const Register = () => {
       isProceed = false
       err_msg += 'password '
     }
+    if (cpassword === '' || cpassword === null) {
+      isProceed = false
+      err_msg += 'confirm password '
+    }
+    if (password !== cpassword) {
+      isProceed = false
+      err_msg = 'password and confirm password should be same '
+    }
+    if (!terms) {
+      isProceed = false
+      err_msg = 'Please accept the terms and conditions'
+    }
 
     if (!isProceed) {
-      alert(err_msg)
+      toast.warning(err_msg, {
+        position: 'top-center',
+        theme: 'dark',
+      })
+      setLoading(false)
     }
     return isProceed
   }
 
   const postUser = async (e) => {
+    setLoading(true)
     e.preventDefault()
     if (isValidate()) {
       await axios
@@ -84,6 +105,7 @@ const Register = () => {
             position: 'top-center',
             theme: 'dark',
           })
+          setLoading(false)
           navigate('/login')
         })
         .catch((err) => {
@@ -91,6 +113,7 @@ const Register = () => {
             position: 'top-center',
             theme: 'dark',
           })
+          setLoading(false)
         })
     }
   }
@@ -211,79 +234,96 @@ const Register = () => {
         </div>
       </nav>
       <div className="register bg-light min-vh-100 d-flex flex-row align-items-center justify-content-center">
-        <form>
-          <div className="form-floating">
-            <h2 className="">REGISTERATION FORM</h2>
-          </div>
-          <div className="form-floating">
-            <input
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              type="text"
-              className="form-control m-1"
-              placeholder="Enter Your First Name"
-            />
-            <label>FirstName</label>
-          </div>
-          <div className="form-floating">
-            <input
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              type="text"
-              className="form-control m-1"
-              placeholder="Enter Your First Name"
-            />
-            <label>LastName</label>
-          </div>
-          <div className="form-floating">
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              className="form-control m-1"
-              placeholder="Enter Your First Name"
-            />
-            <label>E-mail</label>
-          </div>
-          <div className="form-floating">
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              className="form-control m-1"
-              placeholder="Enter Your First Name"
-            />
-            <label>Create Password</label>
-          </div>
-          <div className="form-floating">
-            <input
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              type="tel"
-              className="form-control m-1"
-              placeholder="Enter Your First Name"
-            />
-            <label>Mobile Number</label>
-          </div>
-          <div className="form-floating">
-            <div className="form-check">
-              <input
-                className="form-check-input bg-danger m-1"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label className="form-check-label" htmlFor="flexCheckDefault">
-                <span className="forget"> I agree terms & conditions </span>
-              </label>
+        {loading ? (
+          <Loader />
+        ) : (
+          <form>
+            <div className="form-floating">
+              <h2 className="">REGISTERATION FORM</h2>
             </div>
-          </div>
-          <div className="">
-            <button onClick={postUser} className="btn btn-primary form-floating mt-2">
-              Submit
-            </button>
-          </div>
-        </form>
+            <div className="form-floating">
+              <input
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                type="text"
+                className="form-control m-1"
+                placeholder="Enter Your First Name"
+              />
+              <label>FirstName</label>
+            </div>
+            <div className="form-floating">
+              <input
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                type="text"
+                className="form-control m-1"
+                placeholder="Enter Your First Name"
+              />
+              <label>LastName</label>
+            </div>
+            <div className="form-floating">
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                className="form-control m-1"
+                placeholder="Enter Your First Name"
+              />
+              <label>E-mail</label>
+            </div>
+
+            <div className="form-floating ">
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                className="form-control m-1"
+                placeholder="Enter Your First Name"
+              />
+              <label>Create Password</label>
+            </div>
+            <div className="form-floating ">
+              <input
+                value={cpassword}
+                onChange={(e) => setCpassword(e.target.value)}
+                type="password"
+                className="form-control m-1"
+                placeholder="Enter Your First Name"
+              />
+              <label>Confirm Password</label>
+            </div>
+
+            <div className="form-floating">
+              <input
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                type="tel"
+                className="form-control m-1"
+                placeholder="Enter Your First Name"
+              />
+              <label>Mobile Number</label>
+            </div>
+            <div className="form-floating">
+              <div className="form-check">
+                <input
+                  className="form-check-input bg-danger m-1"
+                  type="checkbox"
+                  value={terms}
+                  id="flexCheckDefault"
+                  onChange={() => setTerms(true)}
+                />
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                  <span className="font-sm"> I agree terms & conditions </span>
+                </label>
+              </div>
+            </div>
+            <div className="">
+              <button onClick={postUser} className="btn btn-primary form-floating mt-2">
+                Submit
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   )

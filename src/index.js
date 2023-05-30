@@ -9,6 +9,7 @@ import store from './store'
 import './App.css'
 import { Flip, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-confirm-alert/src/react-confirm-alert.css';
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <App />
