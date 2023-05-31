@@ -1,3 +1,4 @@
+import { CChart } from '@coreui/react-chartjs'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { ToWords } from 'to-words'
@@ -91,6 +92,9 @@ const StockPort = () => {
               </button>
             </div>
           </div>
+        </div>
+        <div className="d-flex justify-content-center mb-5">
+          
         </div>
       </div>
     </>

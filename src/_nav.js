@@ -104,12 +104,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Overall PortFolio',
-        to: '/profile/portfolio',
+        to: '/portfolio',
       },
       {
         component: CNavItem,
         name: 'Stocks',
-        to: '/profile/portfolio/stocks',
+        to: '/stocks',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -118,7 +118,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Mutual Funds',
-        to: '/profile/portfolio/mf',
+        to: '/mf',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -127,7 +127,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Bond',
-        to: '/profile/portfolio/bond',
+        to: '/bond',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -136,7 +136,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Gold',
-        to: '/profile/portfolio/gold',
+        to: '/gold',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -145,7 +145,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Gold SGB',
-        to: '/profile/portfolio/gold-sgb',
+        to: '/gold-sgb',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -154,7 +154,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Chit Fund',
-        to: '/profile/portfolio/cf',
+        to: '/cf',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -163,7 +163,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Post office',
-        to: '/profile/portfolio/po',
+        to: '/po',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -172,7 +172,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Landing',
-        to: '/profile/portfolio/landing',
+        to: '/landing',
         badge: {
           color: 'info',
           text: 'NEW',

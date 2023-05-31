@@ -13,7 +13,7 @@ const MutualFunds = React.lazy(() =>
 const CorporateActions = React.lazy(() =>
   import('./views/profile/configuartion/Corporate Actions/CorporateAction'),
 )
-const Portfolio = React.lazy(() => import('./views/profile/portfolio/Portfolio'))
+const Portfolio = React.lazy(() => import('./views/profile/portfolio/MainPort/Portfolio'))
 const StockPort = React.lazy(() => import('./views/profile/portfolio/StockPort'))
 const MFPort = React.lazy(() => import('./views/profile/portfolio/MFPort'))
 const BondPort = React.lazy(() => import('./views/profile/portfolio/BondPort'))
@@ -65,47 +65,47 @@ const routes = [
     element: CorporateActions,
   },
   {
-    path: '/profile/portfolio',
+    path: '/portfolio',
     name: 'Portfolio Manage',
     element: Portfolio,
   },
   {
-    path: '/profile/portfolio/stocks',
+    path: '/stocks',
     name: 'Stocks Portfolio Manage',
     element: StockPort,
   },
   {
-    path: '/profile/portfolio/mf',
+    path: '/mf',
     name: 'Mutual Funds Portfolio Manage',
     element: MFPort,
   },
   {
-    path: '/profile/portfolio/bond',
+    path: '/bond',
     name: 'Bonding Portfolio Manage',
     element: BondPort,
   },
   {
-    path: '/profile/portfolio/gold',
+    path: '/gold',
     name: 'Gold Portfolio Manage',
     element: GoldPort,
   },
   {
-    path: '/profile/portfolio/gold-sgb',
+    path: '/gold-sgb',
     name: 'Gold SGB Portfolio Manage',
     element: GoldSGBPort,
   },
   {
-    path: '/profile/portfolio/cf',
+    path: '/cf',
     name: 'Chit Fund Portfolio Manage',
     element: CFPort,
   },
   {
-    path: '/profile/portfolio/po',
+    path: '/po',
     name: 'Post Office Portfolio Manage',
     element: POPort,
-  },
+  }, 
   {
-    path: '/profile/portfolio/landing',
+    path: '/landing',
     name: 'Landing Portfolio Management',
     element: LandingPort,
   },

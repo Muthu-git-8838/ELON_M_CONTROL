@@ -1,3 +1,4 @@
+import { CChart } from '@coreui/react-chartjs'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { ToWords } from 'to-words'
