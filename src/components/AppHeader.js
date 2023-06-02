@@ -10,6 +10,7 @@ import {
   CHeaderToggler,
   CNavLink,
   CNavItem,
+  CBadge,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
@@ -42,16 +43,21 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
+            <CNavLink to="/user-profile" component={NavLink}>
+              Profile
+            </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
+            <CNavLink to="/settings" component={NavLink}>
+              Settings
+            </CNavLink>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav>
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink to="/notification" component={NavLink}>
               <CIcon icon={cilBell} size="lg" />
+              <CBadge color="danger">1</CBadge>
             </CNavLink>
           </CNavItem>
           <CNavItem>
@@ -60,8 +66,9 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink to="/message" component={NavLink}>
               <CIcon icon={cilEnvelopeOpen} size="lg" />
+              <CBadge color="danger">2</CBadge>
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
@@ -69,10 +76,10 @@ const AppHeader = () => {
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-      <CHeaderDivider />
-      <CContainer fluid>
+      {/* <CHeaderDivider /> */}
+      {/* <CContainer fluid>
         <AppBreadcrumb />
-      </CContainer>
+      </CContainer> */}
     </CHeader>
   )
 }

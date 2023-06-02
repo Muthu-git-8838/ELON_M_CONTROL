@@ -8,6 +8,7 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
+  CNavLink,
 } from '@coreui/react'
 import {
   cilBell,
@@ -24,22 +25,12 @@ import {
 import CIcon from '@coreui/icons-react'
 
 import avatar8 from './../../assets/images/avatars/10.png'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { confirmAlert } from 'react-confirm-alert'
 
 const AppHeaderDropdown = () => {
   const navigate = useNavigate('')
-  // const handleLogout = async () => {
-  // let user = sessionStorage.getItem('user')
-  // let confirmed = confirm(`Are You sure to logout from ${user}?`)
-  // if (confirmed) {
-  //   sessionStorage.clear()
-
-  //   navigate('/login')
-  //   toast.success('Logged Out successfully', { position: 'top-center', theme: 'dark' })
-  // }
-  // }
   const handleLogout = () => {
     let user = sessionStorage.getItem('user')
     confirmAlert({
@@ -47,7 +38,7 @@ const AppHeaderDropdown = () => {
       message: 'Are you sure to logout?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Logout',
           onClick: () => {
             sessionStorage.clear()
             navigate('/login')
@@ -55,37 +46,11 @@ const AppHeaderDropdown = () => {
           },
         },
         {
-          label: 'No',
+          label: 'Cancel',
           onClick: () => null,
         },
       ],
     })
-    // confirmAlert({
-    //   customUI: () => {
-    //     return (
-    //       <div className="card w-100">
-    //         <h1>Are you sure?</h1>
-    //         <p>You want to delete this file?</p>
-    //         <button
-    //           className="btn btn-success mx-3"
-    //           onClick={() => {
-    //             alert('Cancelled')
-    //           }}
-    //         >
-    //           No
-    //         </button>
-    //         <button
-    //           className="btn btn-danger"
-    //           onClick={() => {
-    //             alert('deleted')
-    //           }}
-    //         >
-    //           Yes, Delete it!
-    //         </button>
-    //       </div>
-    //     )
-    //   },
-    // })
   }
   return (
     <>
@@ -94,62 +59,67 @@ const AppHeaderDropdown = () => {
           <CAvatar src={avatar8} size="md" />
         </CDropdownToggle>
         <CDropdownMenu className="pt-0" placement="bottom-end">
-          <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
-          <CDropdownItem href="#">
+          <CDropdownHeader className="bg-light fw-semibold py-2">
+            Account <br /> {sessionStorage.getItem('user')}
+          </CDropdownHeader>
+          {/* <CDropdownItem to="/notification" component={NavLink}>
             <CIcon icon={cilBell} className="me-2" />
-            Updates
-            <CBadge color="info" className="ms-2">
-              42
+            Notifications
+            <CBadge color="success" className="ms-2">
+              ON
             </CBadge>
           </CDropdownItem>
-          <CDropdownItem href="#">
+          <CDropdownItem to="/message" component={NavLink}>
             <CIcon icon={cilEnvelopeOpen} className="me-2" />
             Messages
             <CBadge color="success" className="ms-2">
-              42
+              ON
             </CBadge>
-          </CDropdownItem>
+          </CDropdownItem> */}
           <CDropdownItem href="#">
             <CIcon icon={cilTask} className="me-2" />
             Tasks
-            <CBadge color="danger" className="ms-2">
+            {/* <CBadge color="danger" className="ms-2">
               42
-            </CBadge>
+            </CBadge> */}
           </CDropdownItem>
           <CDropdownItem href="#">
             <CIcon icon={cilCommentSquare} className="me-2" />
             Comments
-            <CBadge color="warning" className="ms-2">
+            {/* <CBadge color="warning" className="ms-2">
               42
-            </CBadge>
+            </CBadge> */}
           </CDropdownItem>
           <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
-          <CDropdownItem href="#">
+          <CDropdownItem to="/user-profile" component={NavLink}>
             <CIcon icon={cilUser} className="me-2" />
             Profile
           </CDropdownItem>
-          <CDropdownItem href="#">
+          <CDropdownItem to="/settings" component={NavLink}>
             <CIcon icon={cilSettings} className="me-2" />
             Settings
           </CDropdownItem>
           <CDropdownItem href="#">
             <CIcon icon={cilCreditCard} className="me-2" />
             Payments
-            <CBadge color="secondary" className="ms-2">
+            {/* <CBadge color="secondary" className="ms-2">
               42
-            </CBadge>
+            </CBadge> */}
           </CDropdownItem>
           <CDropdownItem href="#">
             <CIcon icon={cilFile} className="me-2" />
             Projects
-            <CBadge color="primary" className="ms-2">
+            {/* <CBadge color="primary" className="ms-2">
               42
-            </CBadge>
+            </CBadge> */}
           </CDropdownItem>
           <CDropdownDivider />
           <CDropdownItem onClick={handleLogout} style={{ cursor: 'pointer' }}>
             <CIcon icon={cilAccountLogout} className="me-2" />
             Log Out
+            <CBadge color="success" className="ms-2">
+              ON
+            </CBadge>
           </CDropdownItem>
         </CDropdownMenu>
       </CDropdown>

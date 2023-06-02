@@ -27,6 +27,7 @@ import Loader from 'src/views/profile/portfolio/Loader'
 const Register = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
@@ -45,14 +46,14 @@ const Register = () => {
   const isValidate = () => {
     let isProceed = true
     let err_msg = 'Please Enter a Valid  '
-    if (firstName === '' || firstName === null) {
+    if (userName === '' || userName === null) {
       isProceed = false
       err_msg += ' first name '
     }
-    if (lastName === '' || lastName === null) {
-      isProceed = false
-      err_msg += ' last name '
-    }
+    // if (lastName === '' || lastName === null) {
+    //   isProceed = false
+    //   err_msg += ' last name '
+    // }
     if (mobile === '' || mobile === null || mobile.length < 10) {
       isProceed = false
       err_msg += 'mobile number'
@@ -90,12 +91,12 @@ const Register = () => {
 
   const postUser = async (e) => {
     setLoading(true)
+    const URI = process.env.REGISTER_URI
     e.preventDefault()
     if (isValidate()) {
       await axios
-        .post('https://money-signin.onrender.com/api/signup', {
-          firstName,
-          lastName,
+        .post('https://mcontrol-api.onrender.com/register', {
+          userName,
           email,
           password,
           mobile,
@@ -107,12 +108,16 @@ const Register = () => {
           })
           setLoading(false)
           navigate('/login')
+          console.log(res)
         })
         .catch((err) => {
-          toast.error('Registration failed, Try again later', {
-            position: 'top-center',
-            theme: 'dark',
-          })
+          if (err.response.data.code === 11000)
+            toast.error(`Username or E-mail already exist`, {
+              position: 'top-center',
+              theme: 'dark',
+            })
+          console.log(err)
+          // console.log(URI)
           setLoading(false)
         })
     }
@@ -243,15 +248,15 @@ const Register = () => {
             </div>
             <div className="form-floating">
               <input
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 className="form-control m-1"
-                placeholder="Enter Your First Name"
+                placeholder="Enter new User Name"
               />
-              <label>FirstName</label>
+              <label>UserName</label>
             </div>
-            <div className="form-floating">
+            {/* <div className="form-floating">
               <input
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -260,7 +265,7 @@ const Register = () => {
                 placeholder="Enter Your First Name"
               />
               <label>LastName</label>
-            </div>
+            </div> */}
             <div className="form-floating">
               <input
                 value={email}

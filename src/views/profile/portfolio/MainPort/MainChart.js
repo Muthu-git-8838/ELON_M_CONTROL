@@ -21,7 +21,7 @@ const MainChart = () => {
           datasets: [
             {
               label: 'My-Assets',
-              backgroundColor: '#99ff99',
+              backgroundColor: '#0099ff',
               data: [15, 11, 13, 16, 11, 10, 11, 13],
             },
           ],

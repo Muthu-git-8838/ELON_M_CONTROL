@@ -14,7 +14,7 @@ const CorporateActions = React.lazy(() =>
   import('./views/profile/configuartion/Corporate Actions/CorporateAction'),
 )
 const Portfolio = React.lazy(() => import('./views/profile/portfolio/MainPort/Portfolio'))
-const StockPort = React.lazy(() => import('./views/profile/portfolio/StockPort'))
+const StockPort = React.lazy(() => import('./views/profile/portfolio/StockPort/StockPort'))
 const MFPort = React.lazy(() => import('./views/profile/portfolio/MFPort'))
 const BondPort = React.lazy(() => import('./views/profile/portfolio/BondPort'))
 const GoldPort = React.lazy(() => import('./views/profile/portfolio/GoldPort'))
@@ -38,7 +38,10 @@ const ForeignFdRates = React.lazy(() =>
 const NbfcFdRates = React.lazy(() => import('./views/profile/fdrates/nonbank/NbfcFdRates'))
 
 const contactus = React.lazy(() => import('./views/contactus/ContactUs'))
-
+const Message = React.lazy(() => import('./views/message/Message'))
+const Notification = React.lazy(() => import('./views/notification/Notification'))
+const Settings = React.lazy(() => import('./views/settings/Settings'))
+const UserProfile = React.lazy(() => import('./views/userProfile/UserProfile'))
 const logout = React.lazy(() => import('./views/logout/logout'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -103,7 +106,7 @@ const routes = [
     path: '/po',
     name: 'Post Office Portfolio Manage',
     element: POPort,
-  }, 
+  },
   {
     path: '/landing',
     name: 'Landing Portfolio Management',
@@ -125,7 +128,10 @@ const routes = [
   { path: '/nbfc', name: 'Non_Banking Financial Company FD Rates', element: NbfcFdRates },
 
   { path: '/contactus', name: 'Contact Us', element: contactus },
-
+  { path: '/message', name: 'Messages', element: Message },
+  { path: '/notification', name: 'Notifications', element: Notification },
+  { path: '/user-profile', name: 'User Profile', element: UserProfile },
+  { path: '/settings', name: 'Settings', element: Settings },
   { path: '/logout', name: 'Log Out', element: logout },
 ]
 

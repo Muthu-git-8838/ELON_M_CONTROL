@@ -2,6 +2,7 @@ import { CChart } from '@coreui/react-chartjs'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { ToWords } from 'to-words'
+import StockTable from './StockTable'
 
 const StockPort = () => {
   const [company, setCompany] = useState('')
@@ -93,8 +94,11 @@ const StockPort = () => {
             </div>
           </div>
         </div>
-        <div className="d-flex justify-content-center mb-5">
-          
+        <div className="d-flex justify-content-center mb-5"></div>
+      </div>
+      <div className="card">
+        <div className="card-body">
+          <StockTable />
         </div>
       </div>
     </>

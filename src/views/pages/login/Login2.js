@@ -42,6 +42,7 @@ import Loader from 'src/views/profile/portfolio/Loader'
 
 const Login = () => {
   const [email, setEmail] = useState('')
+  const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -82,28 +83,29 @@ const Login = () => {
     setLoading(true)
     if (validate()) {
       try {
-        const response = await axios.post('https://money-signin.onrender.com/api/signin', {
-          email,
+        const response = await axios.post('https://mcontrol-api.onrender.com/login', {
+          userName,
           password,
         })
-        const r = response.data
+        const r = response.data.accesToken
         // console.log(r)
-        sessionStorage.setItem('user', r.data.email)
 
-        if (r.message === 'Signin Successfully') {
+        if (r) {
           toast.success('Login Successfully', {
             position: 'top-center',
             autoClose: 6000,
             theme: 'dark',
           })
-          const randomId = Math.random().toString(36).substring(2)
-          sessionStorage.setItem('AuthID', randomId)
+          sessionStorage.setItem('token', r)
+          sessionStorage.setItem('user', userName)
+          // const randomId = Math.random().toString(36).substring(2)
+          // sessionStorage.setItem('AuthID', randomId)
           navigate('/')
           setLoading(false)
         }
       } catch (error) {
-        toast.error(error.response.data.message, { position: 'top-center', theme: 'dark' })
-        // console.log(error.response)
+        toast.error(error.response.data.error, { position: 'top-center', theme: 'dark' })
+        // console.log(error)
         setLoading(false)
       }
     }
@@ -112,9 +114,9 @@ const Login = () => {
   const validate = () => {
     let result = true
     let err_msg = 'Please Enter Your '
-    if (email === '' || email === null) {
+    if (userName === '' || userName === null) {
       result = false
-      err_msg += 'E-mail '
+      err_msg += 'User Name '
     }
     if (password === '' || password === null) {
       result = false
@@ -319,13 +321,13 @@ const Login = () => {
             </div>
             <div className="form-floating">
               <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 type="text"
                 className="form-control"
                 placeholder="|+|"
               />
-              <label> E-mail ID</label>
+              <label> UserName</label>
             </div>
             <div className="form-floating mt-3">
               <input
